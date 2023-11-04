@@ -1,0 +1,11 @@
+.addClients {
+    position: fixed;
+    right: 20px;
+    width: 200px;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.linha-1, .linha-2 {
+    margin: 3px;
+}
