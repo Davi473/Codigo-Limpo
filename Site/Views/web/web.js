@@ -5,7 +5,11 @@ class Web {
     }
 
     async get(url) {
-        this.resiquicao("get", url)
+       return await this.resiquicao("get", url)
+    }
+
+    async post(url, valor) {
+        this.resiquicao("post", url, valor)
     }
 
 
