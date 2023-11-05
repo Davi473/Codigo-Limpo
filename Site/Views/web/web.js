@@ -5,7 +5,7 @@ class Web {
     }
 
     async get(url) {
-       return await this.resiquicao("get", url)
+       this.requisicao("get", url)
     }
 
     async post(url, valor) {
@@ -13,12 +13,13 @@ class Web {
     }
 
 
-    async resiquicao(tipo, url, valor) {
-        let response = await fetch (this.site + url, {
-            method: tipo, /* get, post, delete */
-            headers: { "content-type": "application/json"},
-            body: JSON.stringify(valor),
-        });
-        return response.json();
-    }
+    async requisicao(tipo, url, valor) {
+        console.log(this.site + url)
+		let response = await fetch(this.site + url, {
+			method: tipo, //get, post, delete
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify(valor),
+		});
+		return response.json();
+	}
 }

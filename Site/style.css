@@ -1,3 +1,10 @@
+
+body {
+    position: absolute;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
 .addClients {
     position: fixed;
     right: 20px;
@@ -8,4 +15,8 @@
 
 .linha-1 {
     margin: 3px;
+}
+
+table, td, th {
+    border: 1px solid black
 }

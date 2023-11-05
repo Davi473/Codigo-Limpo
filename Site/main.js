@@ -1,10 +1,10 @@
 class Tela {
 
-    constructor(div) {
-        new ListaCLients(div)
+    constructor(dados) {
+        new ListaCLients(dados)
     }
 }
 
-const div = new Div
+const dados = new Web("http://localhost:2999")
 
-new Tela(div)
+new Tela(dados)
