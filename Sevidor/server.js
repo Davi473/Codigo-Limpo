@@ -1,5 +1,8 @@
 const express = require("express");
+var cors = require('cors')
 const app = express();
+app.use(express.json());
+app.use("/", express.static("./Site"));
 
 // varivel dos clientes
 const clientesAdicionados = [
@@ -25,4 +28,4 @@ app.post("/excluir", function (req, res) {
 });
 
 
-app.listen(2999);
+app.listen(3000);

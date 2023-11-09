@@ -5,11 +5,11 @@ class Web {
     }
 
     async get(url) {
-       this.requisicao("get", url)
+        return await this.requisicao("get", url)
     }
 
     async post(url, valor) {
-        this.resiquicao("post", url, valor)
+       await this.resiquicao("post", url, valor)
     }
 
 
