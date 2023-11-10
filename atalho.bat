@@ -1,1 +1,1 @@
-node workspaces/Codigo-Limpo/Servidor/server.js
+node /workspaces/Codigo-Limpo/Servidor/server.js

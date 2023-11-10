@@ -15,14 +15,22 @@ app.get("/valoresDosClientes", function (req, res){
 });
 
 app.post("/adicionar", function (req, res) {
-    const lancamento = (req.body).valor;
-    console.log(lancamento)
+    const lancamento = (req.body);
     clientesAdicionados.push(lancamento);
     res.end();
 });
 
+app.post("/trocarStats", function (req, res) {
+    const valor = (req.body).valor;
+    const stats = (req.body).stat;  
+    console.log(req.body)
+    clientesAdicionados[valor].stats = stats
+
+});
+
 app.post("/excluir", function (req, res) {
     const excluir = (req.body).valor;
+    console.log(excluir)
     clientesAdicionados.splice(excluir, excluir + 1);
     res.end();
 });
