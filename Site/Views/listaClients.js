@@ -25,10 +25,9 @@ class ListaCLients {
         for (const value of stats) {
             if (value === statsClient) {} else {this.listStats.push(value)}
         }
-        console.log(this.listStats)
     }
 
-    buttonAdicionar() {
+    async buttonAdicionar() {
         const button = document.getElementById("buttonAdicionar")
         button.addEventListener("click", () => {
             const nome = document.getElementById("Name");
