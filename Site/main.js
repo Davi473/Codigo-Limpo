@@ -5,6 +5,6 @@ class Tela {
     }
 }
 
-const dados = new Web("http://localhost:3000")
+const dados = new Web("http://localhost:3002")
 
 new Tela(dados)

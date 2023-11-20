@@ -55,7 +55,6 @@ class ListaCLients {
         const valores = document.getElementById("referencia")
         let value = 0
         for (const client of this.list) {
-            console.log(client)
             this.select(client.stats)
             valores.insertAdjacentHTML('beforeend',`
                 <tr id="clientes${value}">
@@ -70,7 +69,7 @@ class ListaCLients {
                         </select>
                     </td>
                     <td>
-                        <input type="submit" id="${value}"></input>
+                        <input type="submit" id="${value}" value="Excluir"></input>
                     </td>
                 </tr>
             `);
