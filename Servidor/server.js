@@ -16,10 +16,24 @@ app.get("/valoresDosClientes", function (req, res){
 
 app.post("/adicionar", function (req, res) {
     const lancamento = (req.body);
-    console.log(req.body)
-    //if (tipo !== "receita" )
+    const returno = []
+    if (lancamento.cliente === "" || lancamento.cliente === null) {
+        const value = "Please put some value in name"
+        returno.push(value)
+        throw new Error(value)
+    }
 
-
+    // fazer para verificar o email dos clientes adicionados
+    /*
+    if (lancamento.email) {
+        if (lancamento.email.includes("@")) {
+        
+        } else {
+            throw new Error("please enter your email correctly")
+        }
+    }
+    */
+    console.log(lancamento)
     clientesAdicionados.push(lancamento);
     res.json("Cliente Adicionado");
 });
