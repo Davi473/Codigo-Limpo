@@ -5,15 +5,35 @@ class ListaCLients {
         this.init();
         
     }
-
+    
     async init() {
         this.list = await this.dados.get("/valoresDosClientes")
         this.lista();
     }
+    
 
-    excluir(value) {
-        this.dados.post("/excluir", {valor: value})
-        document.getElementById("clientes" + value).remove()
+    exibirPopup(value) {
+        var meuPopup = window.open('', 'MeuPopup', 'width=400,height=300');
+        meuPopup.document.write(
+        `<html>
+            <head>
+                <title>Meu Popup</title>
+            </head>
+            <body>
+                <h1>${value}</h1>
+            </body>
+        </html>`);
+    }
+
+    getID(value) {
+        return document.getElementById(value)
+    }
+
+    async excluir(value) {
+        const excluir = await this.dados.post("/excluir", {valor: value})
+        console.log(excluir) // valor do retorno
+        this.exibirPopup(excluir.value)
+        this.getID("clientes" + value).remove()
     }
 
     select(statsClient) {
@@ -27,35 +47,37 @@ class ListaCLients {
         }
     }
 
+
     async buttonAdicionar() {
-        const button = document.getElementById("buttonAdicionar")
+        const button = this.getID("buttonAdicionar")
         button.addEventListener("click", () => {
-            const nome = document.getElementById("Name");
-            const email = document.getElementById("Email");
-            const telefone = document.getElementById("Telephone");
-            const stats = document.getElementById("stats");
-            this.dados.post("/adicionar", 
-                { cliente: nome.value, 
-                email: email.value, 
-                telefone: telefone.value, 
-                stats: stats.value }
-            )
+            const nome = this.getID("Name"); 
+            const email = this.getID("Email");
+            const telefone = this.getID("Telephone");
+            const stats = this.getID("stats");
+            if (nome != "") {
+                const lientesNovos = this.dados.post("/adicionar", { client: nome.value, email: email.value, telephone: telefone.value, stats: stats.value });
+            }
             nome.value = "";
             email.value = "";
             telefone.value = "";
-            for (var i = 0; i < this.list.length; i++) {
-                document.getElementById("clientes" + i).remove()
+            if (this.getID("clientes" + 0)) {
+                for (var i = 0; i < this.list.length; i++) {
+                    this.getID("clientes" + i).remove()
+                }
             }
             this.init()
         })
     }
 
     async lista() {
-        this.buttonAdicionar()
-        const valores = document.getElementById("referencia")
+        await this.buttonAdicionar()
+        const valores = this.getID("referencia")
         let value = 0
+        console.log(this.list)
         for (const client of this.list) {
             this.select(client.stats)
+            console.log(client.client)
             valores.insertAdjacentHTML('beforeend',`
                 <tr id="clientes${value}">
                     <td>${client.client}</td>
@@ -73,12 +95,12 @@ class ListaCLients {
                     </td>
                 </tr>
             `);
-            const buttonExcluir = document.getElementById(value)
-            buttonExcluir.addEventListener("click", () => {
+            const buttonExcluir = this.getID(value)
+            buttonExcluir.onclick = () => {
                 this.excluir(buttonExcluir.id);
-            });   
+            };   
             
-            const select = document.getElementById(value + "-select" )
+            const select = this.getID(value + "-select" )
             select.addEventListener("click", () => {
                 const index = select.id
                 this.dados.post("/trocarStats", {valor: index[0], stat: select.value})

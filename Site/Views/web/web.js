@@ -19,8 +19,6 @@ class Web {
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify(valor),
 		});
-        if (tipo === "get") {
-            return response.json();
-        }
+            return await response.json();
 	}
 }

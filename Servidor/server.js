@@ -16,26 +16,9 @@ app.get("/valoresDosClientes", function (req, res){
 
 app.post("/adicionar", function (req, res) {
     const lancamento = (req.body);
-    const returno = []
-    if (lancamento.cliente === "" || lancamento.cliente === null) {
-        const value = "Please put some value in name"
-        returno.push(value)
-        throw new Error(value)
-    }
-
-    // fazer para verificar o email dos clientes adicionados
-    /*
-    if (lancamento.email) {
-        if (lancamento.email.includes("@")) {
-        
-        } else {
-            throw new Error("please enter your email correctly")
-        }
-    }
-    */
     console.log(lancamento)
-    clientesAdicionados.push(lancamento);
-    res.json("Cliente Adicionado");
+    clientesAdicionados.push(lancamento);  
+    res.json({value: `Cliente Novo Adicionado`})
 });
 
 app.post("/trocarStats", function (req, res) {
@@ -48,9 +31,8 @@ app.post("/trocarStats", function (req, res) {
 app.post("/excluir", function (req, res) {
     const excluir = (req.body).valor;
     clientesAdicionados.splice(excluir, excluir + 1);
-    res.end();
+    res.json({value: `Excluido Cliente`});
 });
 
 
-app.listen(3002
-    );
+app.listen(3002);
